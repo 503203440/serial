@@ -23,6 +23,12 @@
             <systemPath>${project.basedir}/src/main/resources/mfz-rxtx-2.2-20081207-win-x64/RXTXcomm.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.6.2</version>
+        </dependency>
+
     </dependencies>
 
 
