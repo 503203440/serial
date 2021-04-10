@@ -1,2 +1,5 @@
 # 项目排除路径
 /target/
+/src/META-INF/
+/out/artifacts/serial_jar/
+/.idea/

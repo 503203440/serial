@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 public class SocketServer {
 
@@ -31,18 +30,12 @@ public class SocketServer {
         InputStream inputStream = socket.getInputStream();
         OutputStream outputStream = socket.getOutputStream();
 
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-        PrintWriter printWriter = new PrintWriter(outputStreamWriter, true);
-
-
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            System.out.println("[client:]" + line);
-            printWriter.println(line);
+        byte[] bytes = new byte[1024];
+        int length = 0;
+        while ((length = inputStream.read(bytes)) != -1) {
+            outputStream.write(bytes, 0, length);
         }
+
 
     }
 
