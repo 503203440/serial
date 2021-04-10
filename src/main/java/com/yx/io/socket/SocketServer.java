@@ -30,11 +30,28 @@ public class SocketServer {
         InputStream inputStream = socket.getInputStream();
         OutputStream outputStream = socket.getOutputStream();
 
+        // 写法1
         byte[] bytes = new byte[1024];
-        int length = 0;
+        int length = -1;
         while ((length = inputStream.read(bytes)) != -1) {
             outputStream.write(bytes, 0, length);
+            String s = new String(bytes, 0, length, "UTF-8");
+            System.out.println("client:" + s);
         }
+
+        // 写法2
+//        byte[] bytes = new byte[1024];
+//        int length = 0;
+//        while ((length = inputStream.read(bytes)) != -1) {
+//            // 输出byteArrayOutputStream的内容
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            byteArrayOutputStream.write(bytes, 0, length);
+//            byte[] byteArray = byteArrayOutputStream.toByteArray();
+//            String string = byteArrayOutputStream.toString("UTF-8");
+//            System.out.println("client:" + string);
+//            // 输出字节流
+//            outputStream.write(bytes, 0, length);
+//        }
 
 
     }
