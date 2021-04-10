@@ -36,7 +36,7 @@ public class SocketServer {
         while ((length = inputStream.read(bytes)) != -1) {
             outputStream.write(bytes, 0, length);
             String s = new String(bytes, 0, length, "UTF-8");
-            System.out.println("client:" + s);
+            System.out.println("[" + hostAddress + "]:" + s);
         }
 
         // 写法2
