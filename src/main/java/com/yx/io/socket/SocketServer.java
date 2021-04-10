@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SocketServer {
 
@@ -25,7 +27,7 @@ public class SocketServer {
 
     public void accept(Socket socket) throws IOException {
         String hostAddress = socket.getInetAddress().getHostAddress();
-        System.out.println("连接已建立，hostAddress:\t" + hostAddress);
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + " 连接已建立，hostAddress:\t" + hostAddress);
 
         InputStream inputStream = socket.getInputStream();
         OutputStream outputStream = socket.getOutputStream();
@@ -36,7 +38,7 @@ public class SocketServer {
         while ((length = inputStream.read(bytes)) != -1) {
             outputStream.write(bytes, 0, length);
             String s = new String(bytes, 0, length, "UTF-8");
-            System.out.println("[" + hostAddress + "]:" + s);
+            System.out.printf("%s [%s]: %s\n", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")), hostAddress, s);
         }
 
         // 写法2
